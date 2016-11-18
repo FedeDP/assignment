@@ -1,0 +1,23 @@
+sudo: required
+
+notifications:
+  email:
+    recipients: nierro92@gmail.com
+    on_success: never
+    on_failure: always
+
+language: c
+
+compiler:
+  - gcc
+  - clang
+
+arch:
+    script:
+        - "echo $CC"
+        - make
+        - make debug
+
+script:
+    - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+
