@@ -6,7 +6,7 @@
 This assignment has been developed with flexibility in mind.  
 I tried to be as generic as possible. I therefore used a singly linked list to store data.  
 Linked list is completely initialized using a double pointer (a pointer to the head of the list), as i wanted code quality to be as high as possible.  
-Note that linked list is not mandatory for this exercise, neither is storing the "struct tm" inside it.  
+Note that linked list is not mandatory for this exercise, neither is storing the [struct tm](https://github.com/FedeDP/assignment/blob/master/assignment.c#L25) inside it.  
 In fact, i could have read from file and compute mean impedance on the fly. But again, i think storing data helps extensibility for future uses.  
 
 Moreover, i had to find a proper way to map our options.conf variables to needed parameters.  
