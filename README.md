@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FedeDP/assignment.svg?branch=master)](https://travis-ci.org/FedeDP/assignment)
+
 # Assignment
 
 ## Design
