@@ -62,6 +62,7 @@ static int read_conf(void);
 static int get_lang(const char *str);
 static int get_format(const char *str);
 static int read_input_file(void);
+static int add_node(input_l **h, size_t size, double resistance, double reactance);
 static double compute_impedance(void);
 static void pretty_print(double impedance);
 static void free_input(input_l *h);
@@ -245,14 +246,10 @@ static int read_input_file(void) {
     input_l **tmp = &values;
     
     while (fscanf(f,"%lf %lf ", &resistance, &reactance) == 2) {
-        *tmp = malloc(sizeof(input_l));
-        if (*tmp == NULL) {
+        if (add_node(tmp, sizeof(input_l), resistance, reactance) == -1) {
             ret = -1;
             break;
         }
-        (*tmp)->next = NULL;
-        (*tmp)->resistance = resistance;
-        (*tmp)->reactance = reactance;
                 
         if (getline(&date, &n, f) == -1) {
             ret = -1;
@@ -260,6 +257,7 @@ static int read_input_file(void) {
             break;
         }
         
+        // cleanup memory
         memset(&((*tmp)->timedate), 0, sizeof(struct tm));
         strptime(date, "%d-%m-%Y %H:%M", &((*tmp)->timedate));
         
@@ -267,9 +265,7 @@ static int read_input_file(void) {
         size++;
     }
     
-    if (feof(f)) {
-        ret = 0;
-    } else {
+    if (!feof(f) || !values) {
         ret = -1;
         fprintf(stderr, "Failed to read proper values from file %s. Please check it.\n", conf.input_file);
     }
@@ -279,6 +275,21 @@ static int read_input_file(void) {
     
 end:
     return ret;
+}
+
+/**
+ * Given a double pointer, allocates needed memory for pointer pointed by it.
+ */
+static int add_node(input_l **h, size_t size, double resistance, double reactance) {
+    *h = malloc(size);
+    
+    if (*h != NULL) {
+        (*h)->next = NULL;
+        (*h)->resistance = resistance;
+        (*h)->reactance = reactance;
+        return 0;
+    }
+    return -1;
 }
 
 /**

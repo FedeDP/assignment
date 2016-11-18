@@ -17,7 +17,7 @@ I used getopt to add the (not required) possibility to change path to options.co
 
 The program has strict error checking, every issue is found and printed with the help of perror().
 
-The part i struggled more was finding [strptime](http://man7.org/linux/man-pages/man3/strptime.3.html) function (converse of strftime). At first i tried with [getdate](http://man7.org/linux/man-pages/man3/getdate.3.html), failing over and over, as it requires an env variable (DATEMSK) set to a file that contains the format.  
+The part i struggled more was finding [strptime](http://man7.org/linux/man-pages/man3/strptime.3.html) function (reverse of strftime). At first i tried with [getdate](http://man7.org/linux/man-pages/man3/getdate.3.html), failing over and over, as it requires an env variable (DATEMSK) set to a file that contains the format.  
 But thanks to the man-pages of getdate, i found out about strptime.  
 
 Talking about flexibility, program can support as many languages as we wish. Developer has only to add new structs for formats and languages.  
