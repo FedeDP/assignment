@@ -21,7 +21,7 @@ The program has strict error checking, every issue is found and printed with the
 The part i struggled more was finding [strptime](http://man7.org/linux/man-pages/man3/strptime.3.html) function (reverse of strftime). At first i tried with [getdate](http://man7.org/linux/man-pages/man3/getdate.3.html), failing over and over, as it requires an env variable (DATEMSK) set to a file that contains the format.  
 But thanks to the man-pages of getdate, i found out about strptime.  
 
-Talking about flexibility, program can support as many languages as we wish. Developer has only to add new structs for formats and languages.  
+Talking about flexibility, program can support as many languages as we wish. Developer has only to add new elements to array of structs for formats and languages.  
 I could use gettext to translate language strings, but again, i thought that was not the aim of this assignment. Moreover, formats struct would be needed anyway.  
 By the way, i found it funny to develop a proper solution without involving gettext.  
 

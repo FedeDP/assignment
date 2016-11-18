@@ -62,7 +62,7 @@ static int read_conf(void);
 static int get_lang(const char *str);
 static int get_format(const char *str);
 static int read_input_file(void);
-static int add_node(input_l **h, size_t size, double resistance, double reactance);
+static int add_node(input_l **h, size_t ssize, double resistance, double reactance);
 static double compute_impedance(void);
 static void pretty_print(double impedance);
 static void free_input(input_l *h);
@@ -280,7 +280,7 @@ end:
 /**
  * Given a double pointer, allocates needed memory for pointer pointed by it.
  */
-static int add_node(input_l **h, size_t size, double resistance, double reactance) {
+static int add_node(input_l **h, size_t ssize, double resistance, double reactance) {
     *h = malloc(size);
     
     if (*h != NULL) {
