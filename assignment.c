@@ -308,6 +308,16 @@ static void pretty_print(double impedance) {
 
 /**
  * Helper recursive free function.
+ * Please, note that while this is surely the most elegant way,
+ * it is quite heavy in case of lots of nodes. It can lead to stack overflows too.
+ * An iterative free would be something like:
+ * 
+ * input_l *tmp;
+ * while (h) {
+ *    tmp = h
+ *    h = tmp->next;
+ *    free(tmp);
+ * }
  */
 static void free_input(input_l *h) {
     if (h->next) {
