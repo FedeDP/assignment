@@ -281,7 +281,7 @@ end:
  * Given a double pointer, allocates needed memory for pointer pointed by it.
  */
 static int add_node(input_l **h, size_t ssize, double resistance, double reactance) {
-    *h = malloc(size);
+    *h = malloc(ssize);
     
     if (*h != NULL) {
         (*h)->next = NULL;
