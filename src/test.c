@@ -2,11 +2,12 @@
 #include <assert.h>
 
 static void test_not_existent_options_file(void);
-static void test_options_file(void);
 static void test_empty_options(void);
+static void test_wrong_options(void);
+static void test_options_file(void);
 static void test_not_existent_input_file(void);
-static void test_input_file(void);
 static void test_empty_input(void);
+static void test_input_file(void);
 static void test_impedance(void);
 
 static struct options conf;
@@ -19,6 +20,7 @@ int main(void) {
      */
     test_not_existent_options_file();
     test_empty_options();
+    test_wrong_options();
     test_options_file();
     
     /**
@@ -48,7 +50,7 @@ static void test_not_existent_options_file(void) {
     printf("Testing not existent options file.\n");
     strcpy(conf.options_file, "?"); 
     
-    assert(read_conf(conf) == -1);
+    assert(read_conf(&conf) == -1);
 }
 
 /**
@@ -58,7 +60,19 @@ static void test_empty_options(void) {
     printf("Testing empty options file.\n");
     strcpy(conf.options_file, "test/test_options_blank.conf");
     
-    assert(read_conf(conf) == -1);
+    assert(read_conf(&conf) == -1);
+}
+
+/**
+ * Test existent wrong options file
+ */
+static void test_wrong_options(void) {
+    printf("Testing wrong options file.\n");
+    strcpy(conf.options_file, "test/test_options_wrong.txt"); 
+    
+    assert(read_conf(&conf) == -1);
+    assert(conf.lang == -1);
+    assert(h == NULL);
 }
 
 /**
@@ -68,7 +82,7 @@ static void test_options_file(void) {
     printf("Testing existent options file.\n");
     strcpy(conf.options_file, "test/test_options.conf");
         
-    assert(read_conf(conf) == 0);
+    assert(read_conf(&conf) == 0);
     assert(conf.lang == 0);
     assert(conf.format == 0);
 }

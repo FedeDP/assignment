@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     init_default_values();
     check_cmd(argc, argv);
         
-    if (!read_conf(conf) && !read_input_file(conf, &values, &size)) {
+    if (!read_conf(&conf) && !read_input_file(conf, &values, &size)) {
         double impedance = compute_impedance(values, size);
         pretty_print(impedance);
     } else {
@@ -111,13 +111,13 @@ static void show_helper(const char *str) {
 /**
  * Reads options.conf and load in conf correct values.
  */
-int read_conf(struct options opt) {
+int read_conf(struct options *opt) {
     FILE *f = NULL;
     int ret = 0;
     char s[3];
     
    
-    if (!(f = fopen(opt.options_file, "r"))) {
+    if (!(f = fopen(opt->options_file, "r"))) {
         ret = -1;
         perror("File");
         goto end;
@@ -129,8 +129,8 @@ int read_conf(struct options opt) {
         goto end;
     }
     
-    opt.lang = get_lang(s);
-    if (opt.lang == -1) {
+    opt->lang = get_lang(s);
+    if (opt->lang == -1) {
         ret = -1;
         fprintf(stderr, "Failed to find %s language.\n", s);
         goto end;
@@ -142,8 +142,8 @@ int read_conf(struct options opt) {
         goto end;
     }
     
-    opt.format = get_format(s);
-    if (opt.format == -1) {
+    opt->format = get_format(s);
+    if (opt->format == -1) {
         ret = -1;
         fprintf(stderr, "Failed to find %s date_format.\n", s);
         goto end;

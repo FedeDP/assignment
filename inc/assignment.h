@@ -44,7 +44,7 @@ struct format {
     char *printable_format;
 };
 
-int read_conf(struct options opt);
+int read_conf(struct options *opt);
 int read_input_file(struct options opt, input_l **h, int *ssize);
 double compute_impedance(input_l *h, int ssize);
 void free_input(input_l *h);
