@@ -7,7 +7,7 @@ This assignment has been developed with flexibility in mind.
 I tried to be as generic as possible. I therefore used a singly linked list to store data.  
 Linked list is completely initialized using a double pointer (a pointer to the head of the list), as i wanted code quality to be as high as possible.  
 Double pointer linked list allocation is delegated to its own function; this way it is way more extensible.  
-Note that linked list is not mandatory for this exercise, even less storing the [struct tm](https://github.com/FedeDP/assignment/blob/master/assignment.c#L25) inside it.  
+Note that linked list is not needed for the purpose of this exercise, even less storing the [struct tm](https://github.com/FedeDP/assignment/blob/master/assignment.c#L25) inside it.  
 In fact, i could have read from file and compute mean impedance on the fly. But again, i think storing data helps extensibility for future uses.  
 
 Moreover, i had to find a proper way to map our options.conf variables to needed parameters.  
@@ -30,3 +30,5 @@ Finally, i'd like to highlight that program is fully valgrind clean. Valgrind wa
 alias | grep valgrind
 alias valgrind='valgrind --tool=memcheck --leak-check=full --track-origins=yes --show-leak-kinds=all -v'
 ```
+
+Code is tested through simple C asserts. Use "make tests" to create test executable.  
