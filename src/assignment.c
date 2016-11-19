@@ -203,12 +203,18 @@ int read_input_file(struct options opt, input_l **h, int *ssize) {
     
     input_l **tmp = h;
     
+    /**
+     * Read resistance and reactance values
+     */
     while (fscanf(f,"%lf %lf ", &resistance, &reactance) == 2) {
         if (add_node(tmp, sizeof(input_l), resistance, reactance) == -1) {
             ret = -1;
             break;
         }
-                
+        
+        /**
+         * Read remaining part of the line (ie: timedate string)
+         */
         if (getline(&date, &n, f) == -1) {
             ret = -1;
             perror("Getline");
