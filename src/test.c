@@ -33,6 +33,11 @@ int main(void) {
      */
     test_impedance();
     
+    /**
+     * Finally free input
+     */
+    free_input(h);
+    
     return EXIT_SUCCESS;
 }
 
